@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Siripz - Akan Datang</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f9f9;
+      color: #333;
+      text-align: center;
+      padding: 2em;
+    }
+    .logo {
+      max-width: 200px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.5em;
+    }
+    .countdown {
+      font-size: 2em;
+      margin: 20px 0;
+      color: #007C91;
+    }
+    input[type="tel"] {
+      padding: 10px;
+      font-size: 1em;
+      width: 80%;
+      max-width: 400px;
+      margin: 10px auto;
+      display: block;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #007C91;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #005e6d;
+    }
+  </style>
+</head>
+<body>
+  <img src="siripzlogo.png" alt="Siripz Logo" class="logo">
+  <h1>Sesuatu yang hebat akan datang!</h1>
+  <p class="countdown" id="countdown">00 Hari 00:00:00</p>
+
+  <p>Masukkan nombor telefon anda untuk mendapatkan kemas kini terkini:</p>
+  <form action="#" onsubmit="return false;">
+    <input type="tel" placeholder="Contoh: 0123456789" required>
+    <button type="submit">Hantar</button>
+  </form>
+
+  <script>
+    const countdown = document.getElementById('countdown');
+    const targetDate = new Date('2025-07-01T00:00:00').getTime();
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.textContent = `${days} Hari ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        countdown.textContent = "Sudah tiba masanya!";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
