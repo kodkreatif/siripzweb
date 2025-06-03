@@ -66,14 +66,14 @@
 <body>
   <img src="siripzlogo.png" alt="Siripz Logo" class="logo">
   <h1>Sesuatu yang hebat akan datang!</h1>
-  <div class="countdown" id="countdown">00 Hari 00 Jam 00 Minit 00 Saat</div>
+  <div class="countdown" id="countdown">00 hari 00 jam 00 minit 00 saat</div>
 
   <p style="font-size: 1.2em; margin-top: 20px; color: #007C91;">
     🎣 Anda pemancing atau nelayan? Jual hasil laut anda terus kepada pembeli tanpa orang tengah!<br>
     Sertai <strong>Siripz</strong> — platform digital yang memudahkan anda memasarkan tangkapan segar secara terus dan telus.<br>
     ⛵ Daftar nombor anda hari ini untuk jadi antara yang terawal!
   </p>
-  
+
   <form action="#" onsubmit="return false;">
     <input type="tel" placeholder="Contoh: 0123456789" required>
     <button type="submit">Hantar</button>
@@ -92,7 +92,7 @@
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      countdown.textContent = `${days} Hari ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      countdown.textContent = `${days} hari ${String(hours).padStart(2, '0')} jam ${String(minutes).padStart(2, '0')} minit ${String(seconds).padStart(2, '0')} saat`;
 
       if (distance < 0) {
         clearInterval(interval);
