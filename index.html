@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Siripz - Akan Tiba</title>
+  <title>Siripz - Akan Datang</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
@@ -13,19 +13,17 @@
       text-align: center;
       padding: 2em;
     }
-
     .logo {
       width: 100%;
-      max-width: 300px;
+      max-width: 250px;
       height: auto;
+      margin-bottom: 0px;
     }
-
     h1 {
       font-size: 3em;
       margin-bottom: 0.5em;
       color: #006064;
     }
-
     .countdown {
       display: inline-block;
       font-size: 2.2em;
@@ -37,7 +35,6 @@
       color: #007C91;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-
     input[type="tel"] {
       padding: 10px;
       font-size: 1em;
@@ -48,7 +45,6 @@
       border: 1px solid #ccc;
       border-radius: 5px;
     }
-
     button {
       background: #007C91;
       color: white;
@@ -58,11 +54,9 @@
       font-size: 1em;
       cursor: pointer;
     }
-
     button:hover {
       background: #005e6d;
     }
-
     .promo-image {
       max-width: 100%;
       height: auto;
@@ -79,15 +73,16 @@
 
   <p style="font-size: 1.2em; margin-top: 20px; color: #007C91;">
     Anda pemancing 🎣 , nelayan ⛵ atau pengusaha kolam ternakan 🧑‍🌾? <br>
-    Jual hasil laut atau ternakan anda terus kepada pembeli dan dapatkan harga yang lebih kompetitif 💵 !<br>
+    Jual hasil laut atau ternakan anda terus kepada pembeli dan dapatkan harga yang lebih kompetitif!<br>
     Sertai <strong>Siripz</strong> — platform digital yang memudahkan anda memasarkan tangkapan segar secara terus dan telus.<br>
     Daftar nombor anda hari ini untuk jadi antara yang terawal dan layak menerima tawaran hebat daripada kami!
   </p>
 
-  <form action="#" onsubmit="return false;">
-    <input type="tel" placeholder="Contoh: 0123456789" required>
+  <form id="phoneForm">
+    <input type="tel" id="phone" name="phone" placeholder="Contoh: 0123456789" required>
     <button type="submit">Hantar</button>
   </form>
+  <p id="response" style="color: green; margin-top: 10px;"></p>
 
   <script>
     const countdown = document.getElementById('countdown');
@@ -109,6 +104,35 @@
         countdown.textContent = "Sudah tiba masanya!";
       }
     }, 1000);
+
+    const form = document.getElementById("phoneForm");
+    const response = document.getElementById("response");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const phone = document.getElementById("phone").value;
+      const url = "https://script.google.com/macros/s/AKfycbzeQNGYkmgJR4WHtyPKj4385IJoEy4ENa4G0XDmH-ylXvjm_C2bmoEsX3lnh4lQDcW2Eg/exec";
+
+      try {
+        const res = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams({ phone })
+        });
+
+        const result = await res.text();
+        if (result === "Success") {
+          response.textContent = "Terima kasih! Nombor anda telah direkod.";
+          form.reset();
+        } else {
+          response.textContent = "Nombor tidak sah atau berlaku ralat.";
+        }
+      } catch (err) {
+        response.textContent = "Gagal menghantar. Sila cuba lagi.";
+      }
+    });
   </script>
 </body>
 </html>
